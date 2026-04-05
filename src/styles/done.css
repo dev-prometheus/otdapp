@@ -1,0 +1,181 @@
+/* ══════════════════════════════════════════════
+   OTGateway — Done Screen
+   ══════════════════════════════════════════════ */
+
+.otg-done {
+  padding: 56px 0 80px;
+  text-align: center;
+}
+
+.otg-done-gfx {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background: var(--ok-bg);
+  border: 2px solid var(--ok-border);
+  display: grid;
+  place-items: center;
+  color: var(--ok);
+  animation: otg-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes otg-pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.otg-done h3 {
+  font-family: var(--fd);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.otg-done-p {
+  font-size: 14px;
+  color: var(--t3);
+  margin-bottom: 24px;
+}
+
+.otg-done-card {
+  border-radius: 14px;
+  background: rgba(14, 19, 32, 0.6);
+  border: 1px solid var(--ln);
+  text-align: left;
+  margin-bottom: 14px;
+  overflow: hidden;
+  animation: otg-up 0.5s 0.15s ease-out both;
+}
+
+.otg-done-r {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--ln);
+}
+
+.otg-done-r:last-child {
+  border-bottom: none;
+}
+
+.otg-done-l {
+  font-size: 13px;
+  color: var(--t3);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.otg-done-l svg {
+  color: var(--t5);
+}
+
+.otg-done-v {
+  font-family: var(--fm);
+  font-size: 13px;
+  color: var(--t1);
+  text-align: right;
+  max-width: 55%;
+  word-break: break-all;
+}
+
+.otg-tx-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--ln);
+  background: var(--el);
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--bl2);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  margin-bottom: 14px;
+  min-height: 48px;
+  text-decoration: none;
+  animation: otg-up 0.5s 0.25s ease-out both;
+}
+
+.otg-tx-link:hover {
+  border-color: var(--bl);
+}
+
+.otg-tx-link:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+.otg-tx-tag {
+  font-family: var(--fd);
+  font-size: 10px;
+  color: var(--t5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.otg-btn-again {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--ln);
+  background: none;
+  color: var(--t3);
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: border-color 0.15s, color 0.15s;
+  min-height: 52px;
+  animation: otg-up 0.5s 0.3s ease-out both;
+}
+
+.otg-btn-again:hover {
+  border-color: var(--bl);
+  color: var(--t1);
+}
+
+.otg-btn-again:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 380px) {
+  .otg-done {
+    padding: 40px 0 80px;
+  }
+
+  .otg-done h3 {
+    font-size: 20px;
+  }
+
+  .otg-done-r {
+    padding: 12px 16px;
+  }
+
+  .otg-done-v {
+    font-size: 12px;
+  }
+
+  .otg-done-l {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .otg-done {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}

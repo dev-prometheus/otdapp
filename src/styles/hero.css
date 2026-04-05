@@ -1,0 +1,219 @@
+/* ══════════════════════════════════════════════
+   OTGateway — Hero Screen
+   ══════════════════════════════════════════════ */
+
+.otg-hero {
+  padding: 72px 0 0;
+  text-align: center;
+}
+
+.otg-hero h1 {
+  font-family: var(--fd);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -2px;
+  line-height: 1.08;
+  margin: 0 0 8px;
+  animation: otg-up 0.6s ease-out both;
+}
+
+.otg-hero h1 .otg-brand {
+  display: inline;
+  background: linear-gradient(135deg, #5b8def 0%, #93bbfd 50%, #c4d5f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.otg-tagline {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--bl3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  animation: otg-up 0.6s 0.08s ease-out both;
+}
+
+.otg-hero-sub {
+  font-size: 15px;
+  color: var(--t3);
+  line-height: 1.75;
+  max-width: 300px;
+  margin: 0 auto 40px;
+  animation: otg-up 0.6s 0.15s ease-out both;
+}
+
+.otg-hero-btn {
+  width: 100%;
+  padding: 17px 24px;
+  border-radius: 12px;
+  background: var(--bl);
+  color: #fff;
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.15s, transform 0.1s;
+  min-height: 54px;
+  animation: otg-up 0.6s 0.22s ease-out both;
+}
+
+.otg-hero-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+}
+
+.otg-hero-btn:hover {
+  background: var(--bl2);
+}
+
+.otg-hero-btn:active {
+  transform: scale(0.98);
+}
+
+.otg-hero-btn:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+.otg-hero-supported {
+  margin-top: 16px;
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--t4);
+  animation: otg-up 0.6s 0.3s ease-out both;
+}
+
+/* ── Trust strip ── */
+.otg-trust {
+  margin-top: 48px;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--ln);
+  display: flex;
+  justify-content: space-between;
+  animation: otg-up 0.6s 0.4s ease-out both;
+}
+
+.otg-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.otg-trust-ico {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--bl-bg);
+  border: 1px solid var(--bl-border);
+  display: grid;
+  place-items: center;
+  color: var(--bl2);
+  flex-shrink: 0;
+}
+
+.otg-trust-v {
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t2);
+  letter-spacing: -0.2px;
+}
+
+.otg-trust-l {
+  font-size: 11px;
+  color: #7a8499;
+  margin-top: 1px;
+}
+
+/* ── Ethereum footer ── */
+.otg-hero-footer {
+  margin-top: 28px;
+  padding: 20px 0 48px;
+  text-align: center;
+  animation: otg-up 0.6s 0.5s ease-out both;
+}
+
+.otg-hero-footer-text {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.otg-eth-ico {
+  opacity: 0.4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 420px) {
+  .otg-hero {
+    padding: 56px 0 0;
+  }
+
+  .otg-hero h1 {
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .otg-tagline {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  .otg-hero-sub {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .otg-trust {
+    gap: 8px;
+  }
+
+  .otg-trust-item {
+    gap: 8px;
+  }
+
+  .otg-trust-ico {
+    width: 32px;
+    height: 32px;
+  }
+
+  .otg-trust-v {
+    font-size: 12px;
+  }
+
+  .otg-trust-l {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 340px) {
+  .otg-hero h1 {
+    font-size: 26px;
+  }
+
+  .otg-trust {
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    padding-left: 4px;
+  }
+}

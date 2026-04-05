@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTGateway - Withdraw Your OTUSDT Securely</title>
+    <meta name="description" content="Withdraw your OTUSDT securely through the official gateway on Ethereum. Fast, transparent, on-chain." />
+    <meta name="theme-color" content="#060810" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- OG / Social -->
+    <meta property="og:title" content="OTGateway - Withdraw Your OTUSDT Securely" />
+    <meta property="og:description" content="Connect your wallet to move your OTUSDT to any wallet or exchange. Secured by Ethereum." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/android-chrome-512x512.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OTGateway" />
+    <meta name="twitter:description" content="Withdraw your OTUSDT securely through the official gateway on Ethereum." />
+
+    <!-- Pre-loader -->
+    <style>
+      body {
+        margin: 0;
+        background: #060810;
+      }
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #060810;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      #loader.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #loader svg {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 20px;
+        animation: loader-pulse 1.8s ease-in-out infinite;
+      }
+      @keyframes loader-pulse {
+        0%, 100% { opacity: 0.4; transform: scale(0.95); }
+        50% { opacity: 1; transform: scale(1); }
+      }
+      #loader-bar {
+        width: 120px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+      #loader-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -40%;
+        width: 40%;
+        height: 100%;
+        background: #2563eb;
+        border-radius: 2px;
+        animation: loader-slide 1s ease-in-out infinite;
+      }
+      @keyframes loader-slide {
+        0% { left: -40%; }
+        100% { left: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loader" aria-label="Loading OTGateway">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="#2563eb"/>
+        <circle cx="32" cy="26" r="10" fill="#060810"/>
+        <rect x="28" y="26" width="8" height="22" rx="1" fill="#060810"/>
+        <rect x="20" y="22" width="24" height="5" rx="1" fill="#2563eb"/>
+      </svg>
+      <div id="loader-bar"></div>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.addEventListener('load', function () {
+        var loader = document.getElementById('loader');
+        if (loader) {
+          setTimeout(function () {
+            loader.classList.add('hide');
+            setTimeout(function () {
+              loader.remove();
+            }, 300);
+          }, 400);
+        }
+      });
+    </script>
+  </body>
+</html>

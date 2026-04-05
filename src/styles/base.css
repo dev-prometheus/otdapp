@@ -1,0 +1,522 @@
+/* ══════════════════════════════════════════════
+   OTGateway — Base
+   ══════════════════════════════════════════════ */
+
+:root {
+  --bg: #060810;
+  --bg2: #0a0e16;
+  --el: #141c2c;
+  --el-h: #1a2438;
+  --ln: rgba(255, 255, 255, 0.06);
+  --ln2: rgba(255, 255, 255, 0.1);
+  --ln3: rgba(255, 255, 255, 0.14);
+  --t1: #eaecf5;
+  --t2: #c8cdd8;
+  --t3: #8892a8;
+  --t4: #636d84;
+  --t5: #4e5a72;
+  --bl: #2563eb;
+  --bl2: #3b82f6;
+  --bl3: #60a5fa;
+  --bl-bg: rgba(37, 99, 235, 0.06);
+  --bl-border: rgba(37, 99, 235, 0.1);
+  --ok: #10b981;
+  --ok-bg: rgba(16, 185, 129, 0.1);
+  --ok-border: rgba(16, 185, 129, 0.22);
+  --am: #f59e0b;
+  --am-bg: rgba(245, 158, 11, 0.1);
+  --am-border: rgba(245, 158, 11, 0.2);
+  --er: #ef4444;
+  --er-bg: rgba(239, 68, 68, 0.1);
+  --er-border: rgba(239, 68, 68, 0.2);
+  --fd: "Clash Display", system-ui, sans-serif;
+  --fb: "Switzer", system-ui, sans-serif;
+  --fm: "Space Mono", monospace;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--fb);
+  background: var(--bg);
+  color: var(--t3);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Layout ── */
+.otg-wrap {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 5;
+}
+
+/* ── Screen transitions ── */
+.otg-screen {
+  animation: otg-fadeIn 0.25s ease-out;
+}
+
+@keyframes otg-fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Skeleton loader ── */
+.otg-skeleton {
+  background: var(--el);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.otg-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%);
+  animation: otg-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes otg-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ══════════════════════════════════════════════
+   PAGE BACKGROUND
+   ══════════════════════════════════════════════ */
+.otg-bg-grad {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 50% -5%, rgba(37, 99, 235, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 250px 400px at 85% 95%, rgba(99, 102, 241, 0.035) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.otg-keyhole-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  opacity: 0.022;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.otg-dots {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 65% 55% at 50% 40%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 55% at 50% 40%, black 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════════════ */
+.otg-hdr {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--ln);
+  background: rgba(6, 8, 16, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.otg-hdr-in {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.otg-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.otg-logo-mark {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.otg-logo-mark svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.otg-logo-text {
+  font-family: var(--fd);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--t1);
+  letter-spacing: -0.5px;
+}
+
+.otg-hdr-r {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.otg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(20, 28, 44, 0.8);
+  border: 1px solid var(--ln);
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t3);
+  white-space: nowrap;
+}
+
+.otg-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ok);
+  flex-shrink: 0;
+}
+
+.otg-btn-connect {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--bl);
+  color: #fff;
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+  min-height: 36px;
+}
+
+.otg-btn-connect:hover {
+  background: var(--bl2);
+}
+
+.otg-btn-connect:active {
+  transform: scale(0.97);
+}
+
+.otg-btn-connect:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+.otg-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 5px 5px 10px;
+  border-radius: 8px;
+  background: rgba(20, 28, 44, 0.8);
+  border: 1px solid var(--ln);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t2);
+  white-space: nowrap;
+  min-height: 36px;
+}
+
+.otg-pill:hover {
+  border-color: var(--ln2);
+}
+
+.otg-pill:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+.otg-pill-av {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bl);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   PROCESSING OVERLAY
+   ══════════════════════════════════════════════ */
+.otg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 8, 16, 0.95);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.otg-spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--ln2);
+  border-top-color: var(--bl2);
+  animation: otg-spin 0.7s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes otg-spin {
+  to { transform: rotate(360deg); }
+}
+
+.otg-ov-h {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.otg-ov-p {
+  font-size: 13px;
+  color: var(--t4);
+  text-align: center;
+}
+
+.otg-ov-warn-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--am-bg);
+  border: 1px solid var(--am-border);
+  display: grid;
+  place-items: center;
+  font-family: var(--fd);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--am);
+  margin-bottom: 16px;
+}
+
+.otg-ov-dismiss {
+  margin-top: 20px;
+  padding: 12px 32px;
+  border-radius: 8px;
+  border: 1px solid var(--ln2);
+  color: var(--t2);
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  min-height: 44px;
+}
+
+.otg-ov-dismiss:hover {
+  border-color: var(--ln3);
+}
+
+/* ══════════════════════════════════════════════
+   NETWORK BADGE
+   ══════════════════════════════════════════════ */
+.otg-net-badge {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(20, 28, 44, 0.8);
+  border: 1px solid var(--ln);
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 300;
+}
+
+/* ══════════════════════════════════════════════
+   WRONG NETWORK
+   ══════════════════════════════════════════════ */
+.otg-wrong-net {
+  padding: 10px 20px;
+  background: var(--er-bg);
+  border-bottom: 1px solid var(--er-border);
+  text-align: center;
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--er);
+}
+
+/* ══════════════════════════════════════════════
+   SHARED
+   ══════════════════════════════════════════════ */
+.otg-usd {
+  color: var(--t4);
+  font-size: 12px;
+}
+
+.otg-ok {
+  color: var(--ok) !important;
+}
+
+.otg-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--el);
+  border: 1px solid var(--ln);
+  color: var(--t4);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.otg-copy-btn:hover {
+  border-color: var(--ln2);
+  color: var(--t3);
+}
+
+.otg-copy-btn:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   ERROR TOAST
+   ══════════════════════════════════════════════ */
+.otg-toast {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 380px;
+  width: calc(100% - 32px);
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--er-bg);
+  border: 1px solid var(--er-border);
+  z-index: 150;
+  cursor: pointer;
+  animation: otg-toast-in 0.3s ease-out;
+}
+
+.otg-toast-msg {
+  font-family: var(--fb);
+  font-size: 13px;
+  color: var(--er);
+  line-height: 1.55;
+}
+
+.otg-toast-hint {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: rgba(239, 68, 68, 0.5);
+  margin-top: 6px;
+}
+
+@keyframes otg-toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ══════════════════════════════════════════════
+   ENTRANCE ANIMATION (shared)
+   ══════════════════════════════════════════════ */
+@keyframes otg-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE
+   ══════════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .otg-hdr-in {
+    padding: 0 12px;
+  }
+
+  .otg-logo-text {
+    font-size: 14px;
+  }
+
+  .otg-chip {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  .otg-pill {
+    padding: 4px 4px 4px 8px;
+    font-size: 10px;
+  }
+
+  .otg-wrap {
+    padding: 0 16px;
+  }
+}
