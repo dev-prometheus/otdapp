@@ -13,6 +13,8 @@ const NETWORKS = {
     contracts: {
       otusdt: "0x8b17e97e2760DB9C7FF25Ef0492aE3C883768905",
       gateway: "0xaaE4972BEb4501de6202Bae9c7bc775E0787f0d5",
+      // Chainlink ETH/USD price feed on Sepolia (8 decimals)
+      ethUsdFeed: "0x694AA1769357215DE4FAC081bf1f309aDC325306",
     },
   },
   mainnet: {
@@ -20,6 +22,8 @@ const NETWORKS = {
     contracts: {
       otusdt: "PASTE_MAINNET_TOKEN_ADDRESS",
       gateway: "PASTE_MAINNET_GATEWAY_ADDRESS",
+      // Chainlink ETH/USD price feed on Ethereum mainnet (8 decimals)
+      ethUsdFeed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
     },
   },
 };

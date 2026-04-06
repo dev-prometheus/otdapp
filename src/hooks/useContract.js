@@ -7,6 +7,12 @@ import GATEWAY_ABI from "../abi/OTGateway.json";
 const TOKEN_DECIMALS = 6;
 const GAS_BUFFER = 1.5;
 
+// Minimal Chainlink AggregatorV3Interface ABI (only what we read)
+const CHAINLINK_ABI = [
+  "function latestRoundData() view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)",
+  "function decimals() view returns (uint8)",
+];
+
 // Parse contract/wallet errors into user-friendly messages
 function parseError(err) {
   const msg = (err?.reason || err?.message || "").toLowerCase();
@@ -116,23 +122,67 @@ export function useContract(provider, signerPromise, address) {
     refresh();
   }, [refresh]);
 
-  // ── Fetch ETH price ──
+  // ── Fetch ETH price from Chainlink (cached in sessionStorage) ──
+  // Reads the on-chain ETH/USD price feed via the existing provider.
+  // No external HTTP calls, no CORS, no rate limits, no privacy leak.
+  // Cached in sessionStorage for 5 minutes so page reloads reuse the value.
   useEffect(() => {
+    if (!provider) return;
+
+    let cancelled = false;
+
     async function fetchPrice() {
+      // Try session cache first (5 minute TTL)
       try {
-        const res = await fetch(
-          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
-        );
-        const data = await res.json();
-        setEthPrice(data.ethereum.usd);
-      } catch {
-        setEthPrice(2104);
+        const cached = sessionStorage.getItem("otg_eth_price");
+        if (cached) {
+          const { price, ts } = JSON.parse(cached);
+          if (Date.now() - ts < 5 * 60 * 1000) {
+            if (!cancelled) setEthPrice(price);
+            return;
+          }
+        }
+      } catch {}
+
+      // Read from Chainlink on-chain oracle
+      try {
+        const feed = new Contract(NET.contracts.ethUsdFeed, CHAINLINK_ABI, provider);
+        const [, answer] = await feed.latestRoundData();
+        // Chainlink ETH/USD uses 8 decimals
+        const price = Number(answer) / 1e8;
+        if (cancelled) return;
+        setEthPrice(price);
+        try {
+          sessionStorage.setItem(
+            "otg_eth_price",
+            JSON.stringify({ price, ts: Date.now() })
+          );
+        } catch {}
+      } catch (err) {
+        console.error("Chainlink price read failed:", err);
+        // Fallback 1: last cached value even if stale
+        try {
+          const cached = sessionStorage.getItem("otg_eth_price");
+          if (cached && !cancelled) {
+            const { price } = JSON.parse(cached);
+            setEthPrice(price);
+            return;
+          }
+        } catch {}
+        // Fallback 2: hardcoded safety net
+        if (!cancelled) setEthPrice(2104);
       }
     }
+
     fetchPrice();
-    const interval = setInterval(fetchPrice, 60000);
-    return () => clearInterval(interval);
-  }, []);
+    // Refresh every 5 minutes. Chainlink ETH/USD updates on a ~1 hour heartbeat
+    // or 0.5% deviation, so polling more often than this is wasted effort.
+    const interval = setInterval(fetchPrice, 5 * 60 * 1000);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [provider]);
 
   // ── Approve gateway ──
   const approveGateway = useCallback(async () => {
