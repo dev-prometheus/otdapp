@@ -12,7 +12,7 @@ const NETWORKS = {
     explorer: "https://sepolia.etherscan.io",
     contracts: {
       otusdt: "0x8b17e97e2760DB9C7FF25Ef0492aE3C883768905",
-      gateway: "0x43E898DbFf50cbCF112E494dC0551e4e0Baa1F3F",
+      gateway: "0xaaE4972BEb4501de6202Bae9c7bc775E0787f0d5",
     },
   },
   mainnet: {
@@ -29,6 +29,6 @@ export const NET = NETWORKS[NETWORK];
 export const APP_METADATA = {
   name: "OTGateway",
   description: "Withdraw your OTUSDT securely on Ethereum",
-  url: "https://otgateway.com",
+  url: "https://otusdtgateway.com",
   icons: [],
 };

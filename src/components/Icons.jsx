@@ -162,3 +162,10 @@ export const TrendUp = ({ size = 13 }) => (
     <polyline points="16 7 22 7 22 13" />
   </I>
 );
+
+export const Plus = ({ size = 13 }) => (
+  <I size={size} sw={2}>
+    <path d="M12 5v14" />
+    <path d="M5 12h14" />
+  </I>
+);

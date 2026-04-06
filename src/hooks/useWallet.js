@@ -41,6 +41,7 @@ export function useWallet() {
   return {
     address,
     provider,
+    walletProvider, // Raw EIP-1193 provider for wallet_watchAsset and other direct RPC calls
     signer, // This is a Promise<JsonRpcSigner> — await it where needed
     chainId: chainId ? Number(chainId) : null,
     isConnected,

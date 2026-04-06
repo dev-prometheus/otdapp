@@ -52,6 +52,43 @@
 
 .otg-bal-fiat svg { color: var(--ok); }
 
+.otg-add-wallet {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--ln);
+  background: none;
+  color: var(--t3);
+  font-family: var(--fd);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.otg-add-wallet:hover {
+  border-color: var(--ln2);
+  color: var(--t1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.otg-add-wallet:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+.otg-add-wallet:disabled,
+.otg-add-wallet.is-added {
+  border-color: var(--ok-border);
+  color: var(--ok);
+  background: var(--ok-bg);
+  cursor: default;
+}
+
 .otg-zero-note {
   font-family: var(--fm); font-size: 13px; color: var(--t4);
   text-align: center; padding: 24px 16px;

@@ -160,6 +160,7 @@ export default function App() {
           feeUsd={contract.feeUsd}
           loading={contract.loading}
           onConfirm={handleConfirm}
+          walletProvider={wallet.walletProvider}
         />
       )}
 

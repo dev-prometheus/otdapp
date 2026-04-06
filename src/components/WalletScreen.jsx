@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { NET } from "../config";
 import {
   DollarSign, Activity, ArrowUpRight, Coins,
   Info, Send, MapPin, Receipt, TrendUp,
-  ShieldCheck, ArrowLeft, AlertTriangle, Copy, Check,
+  ShieldCheck, ArrowLeft, AlertTriangle, Copy, Check, Plus,
 } from "./Icons";
 
 const fmt = (n, d = 2) =>
@@ -16,11 +17,12 @@ const truncAddr = (a) =>
 
 const isValidEthAddress = (addr) => /^0x[a-fA-F0-9]{40}$/.test(addr);
 
-export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfirm }) {
+export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfirm, walletProvider }) {
   const [dest, setDest] = useState("");
   const [touched, setTouched] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [added, setAdded] = useState(false);
 
   const trimmed = dest.trim();
   const valid = isValidEthAddress(trimmed);
@@ -46,6 +48,28 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {}
+  };
+
+  const handleAddToWallet = async () => {
+    if (!walletProvider) return;
+    try {
+      await walletProvider.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address: NET.contracts.otusdt,
+            symbol: "OTUSDT",
+            decimals: 6,
+            image: `${window.location.origin}/otusdt-logo.png`, 
+          },
+        },
+      });
+      setAdded(true);
+      setTimeout(() => setAdded(false), 2500);
+    } catch {
+      // User rejected or wallet does not support wallet_watchAsset — fail silently
+    }
   };
 
   return (
@@ -82,6 +106,18 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
               <TrendUp size={13} />
               ${fmt(balance)} USD
             </div>
+          )}
+          {!loading && balance !== null && walletProvider && (
+            <button
+              type="button"
+              className={`otg-add-wallet${added ? " is-added" : ""}`}
+              onClick={handleAddToWallet}
+              disabled={added}
+              aria-label={added ? "OTUSDT added to wallet" : "Add OTUSDT to your wallet"}
+            >
+              {added ? <Check size={13} /> : <Plus size={13} />}
+              {added ? "Added to wallet" : "Add OTUSDT to wallet"}
+            </button>
           )}
         </div>
 
