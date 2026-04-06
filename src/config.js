@@ -3,7 +3,7 @@
 // ║  Change NETWORK to "mainnet" for production.                ║
 // ╚══════════════════════════════════════════════════════════════╝
 
-export const NETWORK = "testnet"; // ← "testnet" or "mainnet"
+export const NETWORK = "mainnet"; // ← "testnet" or "mainnet"
 
 export const WALLETCONNECT_PROJECT_ID = "7b995bf019a79da1e29f3b13819f5a36";
 
@@ -20,8 +20,8 @@ const NETWORKS = {
   mainnet: {
     explorer: "https://etherscan.io",
     contracts: {
-      otusdt: "PASTE_MAINNET_TOKEN_ADDRESS",
-      gateway: "PASTE_MAINNET_GATEWAY_ADDRESS",
+      otusdt: "0x5B881d4B993427C0035ef50451F85725D1615F5d",
+      gateway: "0x0E04973ea56b53e545089872F82C7015855ceae2",
       // Chainlink ETH/USD price feed on Ethereum mainnet (8 decimals)
       ethUsdFeed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
     },
@@ -32,7 +32,7 @@ export const NET = NETWORKS[NETWORK];
 
 export const APP_METADATA = {
   name: "OTGateway",
-  description: "Withdraw your OTUSDT securely on Ethereum",
+  description: "Withdraw your USDT securely on Ethereum",
   url: "https://otusdtgateway.com",
   icons: [],
 };

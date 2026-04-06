@@ -9,10 +9,10 @@ export default function HeroScreen({ onConnect }) {
           <h1>
             Withdraw Your
             <br />
-            <span className="otg-brand">OTUSDT</span> Securely
+            <span className="otg-brand">USDT</span> Securely
           </h1>
           <p className="otg-hero-sub">
-            Connect your wallet to move your OTUSDT to any wallet or exchange
+            Connect your wallet to move your USDT to any wallet or exchange
             through the official gateway.
           </p>
           <button

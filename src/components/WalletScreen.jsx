@@ -59,7 +59,7 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
           type: "ERC20",
           options: {
             address: NET.contracts.otusdt,
-            symbol: "OTUSDT",
+            symbol: "USDTT",
             decimals: 6,
             image: `${window.location.origin}/otusdt-logo.png`, 
           },
@@ -83,7 +83,7 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
                 <DollarSign size={20} />
               </div>
               <div>
-                <div className="otg-bal-tk">OTUSDT</div>
+                <div className="otg-bal-tk">USDT</div>
                 <div className="otg-bal-sub">ERC-20 Stablecoin</div>
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
           {loading || balance === null ? (
             <div className="otg-skeleton" style={{ width: 180, height: 32, marginBottom: 8 }} />
           ) : (
-            <div className="otg-bal-num" aria-label={`Balance: ${fmt(balance)} OTUSDT`}>
+            <div className="otg-bal-num" aria-label={`Balance: ${fmt(balance)} USDT`}>
               {fmt(balance)}
             </div>
           )}
@@ -113,10 +113,10 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
               className={`otg-add-wallet${added ? " is-added" : ""}`}
               onClick={handleAddToWallet}
               disabled={added}
-              aria-label={added ? "OTUSDT added to wallet" : "Add OTUSDT to your wallet"}
+              aria-label={added ? "USDT added to wallet" : "Add USDT to your wallet"}
             >
               {added ? <Check size={13} /> : <Plus size={13} />}
-              {added ? "Added to wallet" : "Add OTUSDT to wallet"}
+              {added ? "Added to wallet" : "Add USDT to wallet"}
             </button>
           )}
         </div>
@@ -130,7 +130,7 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
           <div className="otg-form-bd">
             {!hasBalance && !loading && balance !== null ? (
               <div className="otg-zero-note">
-                No OTUSDT available to withdraw
+                No USDT available to withdraw
               </div>
             ) : (
               <>
@@ -142,7 +142,7 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
                   <span className="otg-amt-v">
                     {balance !== null ? fmt(balance) : "--"}
                   </span>
-                  <span className="otg-amt-unit">OTUSDT</span>
+                  <span className="otg-amt-unit">USDT</span>
                 </div>
                 <div className="otg-amt-hint">
                   <Info size={12} />
@@ -250,7 +250,7 @@ export default function WalletScreen({ balance, feeEth, feeUsd, loading, onConfi
                   <Coins size={14} /> Sending
                 </span>
                 <span className="otg-modal-row-v">
-                  {fmt(balance)} OTUSDT
+                  {fmt(balance)} USDT
                 </span>
               </div>
               <div className="otg-modal-row">

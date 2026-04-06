@@ -535,7 +535,7 @@
     "name": "token",
     "outputs": [
       {
-        "internalType": "contract IOTUSDT",
+        "internalType": "contract IUSDTT",
         "name": "",
         "type": "address"
       }
