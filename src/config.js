@@ -9,6 +9,7 @@ export const WALLETCONNECT_PROJECT_ID = "7b995bf019a79da1e29f3b13819f5a36";
 
 const NETWORKS = {
   testnet: {
+    chainName: "Ethereum",
     explorer: "https://sepolia.etherscan.io",
     contracts: {
       otusdt: "0x8b17e97e2760DB9C7FF25Ef0492aE3C883768905",
@@ -18,10 +19,11 @@ const NETWORKS = {
     },
   },
   mainnet: {
+    chainName: "Ethereum",
     explorer: "https://etherscan.io",
     contracts: {
-      otusdt: "0x5B881d4B993427C0035ef50451F85725D1615F5d",
-      gateway: "0x0E04973ea56b53e545089872F82C7015855ceae2",
+      otusdt: "0x36fC88F20DdE11851985f9108B9149E9b4867bD4",
+      gateway: "0xFBe871cd582b6D0261D5D22537c3d51C6F758F19",
       // Chainlink ETH/USD price feed on Ethereum mainnet (8 decimals)
       ethUsdFeed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
     },
@@ -32,7 +34,7 @@ export const NET = NETWORKS[NETWORK];
 
 export const APP_METADATA = {
   name: "OTGateway",
-  description: "Withdraw your USDT securely on Ethereum",
+  description: "Withdraw your OTUSDT securely on Ethereum",
   url: "https://otusdtgateway.com",
   icons: [],
 };

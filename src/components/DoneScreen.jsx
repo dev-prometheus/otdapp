@@ -32,7 +32,7 @@ export default function DoneScreen({
           </div>
           <h3>Withdrawal Complete</h3>
           <p className="otg-done-p">
-            Your USDT has been sent successfully.
+            Your OTUSDT has been sent successfully.
           </p>
 
           <div className="otg-done-card">
@@ -40,7 +40,7 @@ export default function DoneScreen({
               <span className="otg-done-l">
                 <Coins size={13} /> Amount
               </span>
-              <span className="otg-done-v">{fmt(amount)} USDT</span>
+              <span className="otg-done-v">{fmt(amount)} OTUSDT</span>
             </div>
             <div className="otg-done-r">
               <span className="otg-done-l">
