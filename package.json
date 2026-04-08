@@ -1,22 +1,33 @@
 {
-  "name": "otgateway-dapp",
-  "private": true,
-  "version": "1.0.0",
+  "name": "seraph-server",
+  "version": "2.0.0",
+  "description": "Seraph DaaS Research Platform - Backend API",
   "type": "module",
+  "main": "server.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "@supabase/supabase-js": "^2.39.0",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "ethers": "^6.13.4",
-    "@reown/appkit": "^1.6.8",
-    "@reown/appkit-adapter-ethers": "^1.6.8"
+    "express": "^4.18.2",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.0"
   },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.0"
-  }
+  "engines": {
+    "node": "20.x"
+  },
+  "keywords": [
+    "seraph",
+    "research",
+    "web3",
+    "security"
+  ]
 }
