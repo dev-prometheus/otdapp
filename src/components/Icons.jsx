@@ -169,3 +169,43 @@ export const Plus = ({ size = 13 }) => (
     <path d="M5 12h14" />
   </I>
 );
+
+export const ArrowDown = ({ size = 16 }) => (
+  <I size={size} sw={2}>
+    <path d="M12 5v14" />
+    <path d="m19 12-7 7-7-7" />
+  </I>
+);
+
+export const Repeat = ({ size = 16 }) => (
+  <I size={size} sw={2}>
+    <path d="m17 2 4 4-4 4" />
+    <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+    <path d="m7 22-4-4 4-4" />
+    <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+  </I>
+);
+
+export const Clock = ({ size = 13 }) => (
+  <I size={size}>
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
+  </I>
+);
+
+export const EthLogo = ({ size = 14 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 256 417"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M127.961 0L125.166 9.5v275.668l2.795 2.79 127.962-75.638z" opacity="0.8" />
+    <path d="M127.962 0L0 212.32l127.962 75.639V154.158z" />
+    <path d="M127.961 312.187l-1.575 1.92v98.199l1.575 4.6L256 236.587z" opacity="0.8" />
+    <path d="M127.962 416.905v-104.72L0 236.585z" />
+    <path d="M127.961 287.958l127.96-75.637-127.96-58.162z" opacity="0.55" />
+    <path d="M0 212.32l127.96 75.638v-133.8z" opacity="0.9" />
+  </svg>
+);

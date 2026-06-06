@@ -17,6 +17,7 @@ const NETWORKS = {
       // Chainlink ETH/USD price feed on Sepolia (8 decimals)
       ethUsdFeed: "0x694AA1769357215DE4FAC081bf1f309aDC325306",
     },
+    gatewayDeployBlock: null,
   },
   mainnet: {
     chainName: "Ethereum",
@@ -27,6 +28,11 @@ const NETWORKS = {
       // Chainlink ETH/USD price feed on Ethereum mainnet (8 decimals)
       ethUsdFeed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
     },
+    // Block at or near gateway deployment. Used to bound on-chain history queries.
+    // If null, the history fetch will look back ~35 days (250k blocks) from latest.
+    // To find the real value: open the gateway address on Etherscan,
+    // look at the contract creation tx, copy the block number here.
+    gatewayDeployBlock: null,
   },
 };
 

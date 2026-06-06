@@ -6,6 +6,7 @@ import App from "./App";
 import "./styles/base.css";
 import "./styles/hero.css";
 import "./styles/wallet.css";
+import "./styles/swap.css";
 import "./styles/done.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

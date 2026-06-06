@@ -1,0 +1,772 @@
+/* OTGateway - Swap Screen + Swap Done */
+
+/* ============ Header logo as home button ============ */
+.otg-logo-btn {
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.otg-logo-btn:hover {
+  opacity: 0.85;
+}
+
+.otg-logo-btn:active {
+  transform: scale(0.97);
+}
+
+.otg-logo-btn:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 4px;
+}
+
+/* ============ Stats row (above swap cards) ============ */
+.otg-swap-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  max-width: 440px;
+  margin: 0 auto 16px;
+  animation: otg-up 0.5s ease-out both;
+}
+
+.otg-swap-stat {
+  background: var(--el);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  padding: 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.otg-swap-stat-out {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: var(--ok-border);
+}
+
+.otg-swap-stat-quota {
+  /* default neutral */
+}
+
+.otg-swap-stat-quota.is-warn {
+  background: var(--am-bg);
+  border-color: var(--am-border);
+}
+
+.otg-swap-stat-quota.is-warn .otg-swap-stat-l svg {
+  color: var(--am);
+}
+
+.otg-swap-stat-quota.is-full {
+  background: var(--er-bg);
+  border-color: var(--er-border);
+}
+
+.otg-swap-stat-quota.is-full .otg-swap-stat-l svg,
+.otg-swap-stat-quota.is-full .otg-swap-stat-v {
+  color: var(--er);
+}
+
+.otg-swap-stat-l {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--fm);
+  font-size: 9.5px;
+  color: var(--t4);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.otg-swap-stat-l svg {
+  color: var(--t5);
+}
+
+.otg-sync-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bl2);
+  margin-left: 2px;
+  animation: otg-sync-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes otg-sync-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.otg-swap-stat-out .otg-swap-stat-l svg {
+  color: var(--ok);
+}
+
+.otg-swap-stat-v {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--t1);
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+  width: 100%;
+  word-break: break-all;
+}
+
+.otg-swap-stat-of {
+  font-family: var(--fm);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--t4);
+  letter-spacing: 0;
+}
+
+.otg-swap-stat-sym {
+  font-family: var(--fm);
+  font-size: 9.5px;
+  color: var(--t4);
+  letter-spacing: 0.6px;
+}
+
+.otg-swap-progress {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ln2);
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.otg-swap-progress-fill {
+  height: 100%;
+  background: var(--bl2);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.otg-swap-stat-quota.is-warn .otg-swap-progress-fill {
+  background: var(--am);
+}
+
+.otg-swap-stat-quota.is-full .otg-swap-progress-fill {
+  background: var(--er);
+}
+
+@media (max-width: 380px) {
+  .otg-swap-stats {
+    gap: 6px;
+  }
+
+  .otg-swap-stat {
+    padding: 10px 10px;
+  }
+
+  .otg-swap-stat-v {
+    font-size: 14px;
+  }
+}
+
+/* ============ Daily limit banner ============ */
+.otg-swap-limit-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--er-bg);
+  border: 1px solid var(--er-border);
+  color: var(--er);
+  margin-bottom: 14px;
+  animation: otg-up 0.4s ease-out both;
+}
+
+.otg-swap-limit-banner svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.otg-swap-limit-banner-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.otg-swap-limit-banner-title {
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--er);
+  letter-spacing: -0.2px;
+  margin-bottom: 2px;
+}
+
+.otg-swap-limit-banner-sub {
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.45;
+}
+
+/* ============ Capped amount notice ============ */
+.otg-swap-cap-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--am-bg);
+  border: 1px solid var(--am-border);
+  color: var(--t2);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.otg-swap-cap-note svg {
+  color: var(--am);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ============ Swap container ============ */
+.otg-swap {
+  max-width: 440px;
+  margin: 0 auto;
+  animation: otg-up 0.5s ease-out both;
+}
+
+.otg-swap-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 4px;
+}
+
+.otg-swap-hdr-title {
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t2);
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.otg-swap-hdr-title svg {
+  color: var(--bl2);
+}
+
+/* ============ Swap cards ============ */
+.otg-swap-card {
+  background: var(--el);
+  border: 1px solid var(--ln2);
+  border-radius: 16px;
+  padding: 18px 18px 14px;
+  transition: border-color 0.15s;
+}
+
+.otg-swap-card:hover {
+  border-color: var(--ln3);
+}
+
+.otg-swap-card-to {
+  background: rgba(37, 99, 235, 0.04);
+  border-color: var(--bl-border);
+}
+
+.otg-swap-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.otg-swap-card-label {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t4);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.otg-swap-card-bal {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t4);
+}
+
+.otg-swap-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.otg-swap-amt {
+  font-family: var(--fd);
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--t1);
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+  word-break: break-all;
+}
+
+.otg-swap-token {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ln2);
+  flex-shrink: 0;
+}
+
+.otg-swap-token-ico {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.otg-swap-token-ico-from {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+}
+
+.otg-swap-token-ico-to {
+  background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+}
+
+.otg-swap-token-ico-eth {
+  background: linear-gradient(135deg, #627eea 0%, #3c5ed1 100%);
+}
+
+.otg-swap-amt-muted {
+  color: var(--t4) !important;
+  font-weight: 500 !important;
+}
+
+.otg-swap-token-sym {
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t1);
+  letter-spacing: -0.2px;
+}
+
+.otg-swap-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--ln);
+}
+
+.otg-swap-usd {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t4);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.otg-swap-usd svg {
+  color: var(--ok);
+}
+
+.otg-swap-max {
+  font-family: var(--fd);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--bl2);
+  letter-spacing: 1.2px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--bl-bg);
+  border: 1px solid var(--bl-border);
+}
+
+/* ============ Arrow divider ============ */
+.otg-swap-arrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -8px 0;
+  z-index: 2;
+}
+
+.otg-swap-arrow::before {
+  content: "";
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--ln2);
+}
+
+.otg-swap-arrow svg {
+  position: relative;
+  color: var(--bl2);
+  z-index: 1;
+}
+
+/* ============ Meta block ============ */
+.otg-swap-meta {
+  margin-top: 14px;
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  background: rgba(14, 19, 32, 0.5);
+  overflow: hidden;
+}
+
+.otg-swap-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--ln);
+}
+
+.otg-swap-meta-row:last-child {
+  border-bottom: none;
+}
+
+.otg-swap-meta-l {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.otg-swap-meta-l svg {
+  color: var(--t5);
+}
+
+.otg-swap-meta-v {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--t2);
+}
+
+.otg-swap-zero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--am-bg);
+  border: 1px solid var(--am-border);
+  color: var(--am);
+  font-size: 12px;
+}
+
+/* ============ Submit button ============ */
+.otg-swap-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--bl);
+  color: #fff;
+  font-family: var(--fd);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+  min-height: 54px;
+  position: relative;
+  overflow: hidden;
+}
+
+.otg-swap-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.otg-swap-btn:hover:not(:disabled) {
+  background: var(--bl2);
+}
+
+.otg-swap-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.otg-swap-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.otg-swap-btn:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+/* ============ Hero swap CTA (secondary stacked) ============ */
+.otg-hero-btn-swap {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--t1);
+  font-family: var(--fd);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid var(--ln3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  min-height: 52px;
+  animation: otg-up 0.6s 0.26s ease-out both;
+}
+
+.otg-hero-btn-swap:hover {
+  background: var(--el);
+  border-color: var(--bl);
+}
+
+.otg-hero-btn-swap:active {
+  transform: scale(0.98);
+}
+
+.otg-hero-btn-swap:focus-visible {
+  outline: 2px solid var(--bl3);
+  outline-offset: 2px;
+}
+
+/* ============ Swap Done Screen ============ */
+.otg-sdone {
+  text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.otg-sdone-badge {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  background: var(--ok-bg);
+  border: 2px solid var(--ok-border);
+  display: grid;
+  place-items: center;
+  color: var(--ok);
+  animation: otg-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.otg-sdone-badge-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--ok-border);
+  opacity: 0.5;
+  animation: otg-ring 1.8s ease-out infinite;
+}
+
+@keyframes otg-ring {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+.otg-sdone-title {
+  font-family: var(--fd);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.6px;
+  margin-bottom: 6px;
+}
+
+.otg-sdone-sub {
+  font-size: 14px;
+  color: var(--t3);
+  margin-bottom: 26px;
+}
+
+/* Flow card */
+.otg-sdone-flow {
+  border-radius: 18px;
+  background: var(--el);
+  border: 1px solid var(--ln2);
+  padding: 18px;
+  margin-bottom: 14px;
+  position: relative;
+  animation: otg-up 0.5s 0.1s ease-out both;
+}
+
+.otg-sdone-flow-row {
+  padding: 6px 4px;
+}
+
+.otg-sdone-flow-row-out {
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 12px;
+  padding: 14px 12px;
+  margin-top: 4px;
+}
+
+.otg-sdone-flow-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.otg-sdone-flow-label {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.otg-sdone-flow-amt {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.otg-sdone-flow-num {
+  font-family: var(--fd);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.6px;
+  line-height: 1;
+}
+
+.otg-sdone-flow-sym {
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t3);
+}
+
+.otg-sdone-flow-usd {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t4);
+}
+
+.otg-sdone-flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: 6px auto 2px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--ln2);
+  color: var(--bl2);
+}
+
+/* Detail card */
+.otg-sdone-card {
+  border-radius: 14px;
+  background: rgba(14, 19, 32, 0.6);
+  border: 1px solid var(--ln);
+  text-align: left;
+  margin-bottom: 14px;
+  overflow: hidden;
+  animation: otg-up 0.5s 0.18s ease-out both;
+}
+
+.otg-sdone-r {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--ln);
+}
+
+.otg-sdone-r:last-child {
+  border-bottom: none;
+}
+
+.otg-sdone-l {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.otg-sdone-l svg {
+  color: var(--t5);
+}
+
+.otg-sdone-v {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--t1);
+  text-align: right;
+  max-width: 55%;
+  word-break: break-all;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 420px) {
+  .otg-swap-amt {
+    font-size: 26px;
+  }
+
+  .otg-swap-card {
+    padding: 16px 14px 12px;
+  }
+
+  .otg-sdone-flow-num {
+    font-size: 24px;
+  }
+
+  .otg-sdone-title {
+    font-size: 22px;
+  }
+
+  .otg-sdone-badge {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (max-width: 360px) {
+  .otg-swap-amt {
+    font-size: 22px;
+  }
+
+  .otg-swap-token-sym {
+    font-size: 13px;
+  }
+}

@@ -12,7 +12,7 @@ const CHAINLINK_ABI = [
   "function latestRoundData() view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)",
   "function decimals() view returns (uint8)",
 ];
-
+ 
 // Parse contract/wallet errors into user-friendly messages
 function parseError(err) {
   const msg = (err?.reason || err?.message || "").toLowerCase();
