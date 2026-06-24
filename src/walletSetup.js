@@ -4,7 +4,7 @@ import { sepolia, mainnet } from "@reown/appkit/networks";
 import { WALLETCONNECT_PROJECT_ID, APP_METADATA, NETWORK } from "./config";
 
 const activeNetwork = NETWORK === "mainnet" ? mainnet : sepolia;
-
+// create appkit
 createAppKit({
   adapters: [new EthersAdapter()],
   networks: [activeNetwork],
